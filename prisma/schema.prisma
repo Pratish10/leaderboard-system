@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider     = "postgresql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model Scores {
+  id        Int      @id @default(autoincrement())
+  user_id   String   @unique
+  game_id   String
+  score     Float
+  timeStamp DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([game_id, score(sort: Desc)], name: "idx_scores_game_score")
+  @@index([timeStamp], name: "idx_scores_timestamp")
+  @@index([user_id, game_id], name: "idx_scores_user_game")
+}
