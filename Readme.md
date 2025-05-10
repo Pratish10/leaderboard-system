@@ -4,7 +4,7 @@ This project was developed as part of a backend engineering task for Ringr AI, f
 
 ## High-Level Architecture
 
-
+![image](https://github.com/user-attachments/assets/28b8b4fd-fdd4-4020-9ef5-82d46656a44b)
 
 ### Trade-offs Made
 1. **Eventual Consistency**: Faster writes with async cache invalidation
